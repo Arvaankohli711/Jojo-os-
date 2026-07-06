@@ -25,6 +25,7 @@
     "@modelcontextprotocol/sdk": "^1.29.0",
     "@types/three": "^0.185.0",
     "lucide-react": "^1.23.0",
+    "simplex-noise": "^4.0.3",
     "three": "^0.185.1"
   },
   "devDependencies": {

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import BootScreen from './components/BootScreen'
 import FirstRun from './components/FirstRun'
 import Sidebar from './components/Sidebar'
+import Waves from './components/Waves'
 import Home from './pages/Home'
 import Settings from './pages/Settings'
 import Chat from './pages/Chat'
@@ -93,6 +94,7 @@ function App(): React.JSX.Element {
 
   return (
     <div className="shell">
+      <Waves />
       <div className="titlebar">
         <span className="titlebar-brand">JOJO ▞▞ OS</span>
         <span className="titlebar-status">SYSTEMS NOMINAL</span>

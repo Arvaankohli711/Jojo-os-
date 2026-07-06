@@ -24,6 +24,11 @@
         --font: 'Inter', 'Segoe UI', system-ui, sans-serif;
       }
       * { box-sizing: border-box; margin: 0; padding: 0; }
+      .waves-bg {
+        position: fixed; inset: 0; z-index: 0; pointer-events: none;
+        width: 100%; height: 100%;
+      }
+      nav, .wrap { position: relative; z-index: 1; }
       body {
         font-family: var(--font);
         color: var(--text);
@@ -99,6 +104,7 @@
     </style>
   </head>
   <body>
+    <canvas class="waves-bg" aria-hidden="true"></canvas>
     <nav>
       <div class="brand">JOJO <b>OS</b></div>
       <div class="nav-links">
@@ -200,5 +206,58 @@ npm run build:win   # Windows installer (dist/)</pre>
         <a href="https://github.com/your-username/jojo-os">GitHub</a>
       </footer>
     </div>
+    <script>
+      // Animated line-field background (matches the app's Waves). Vanilla, no deps.
+      // ponytail: layered-sine pseudo-noise instead of simplex — same wavy look,
+      // nothing to bundle for a static page. Bails on reduced-motion.
+      (function () {
+        var cv = document.querySelector('.waves-bg')
+        if (!cv || matchMedia('(prefers-reduced-motion: reduce)').matches) return
+        var ctx = cv.getContext('2d')
+        var w, h, cols, mouse = { x: -999, y: -999, sx: -999, sy: -999 }
+        var GAP = 26, DPR = Math.min(window.devicePixelRatio || 1, 2)
+        function resize() {
+          w = cv.clientWidth; h = cv.clientHeight
+          cv.width = w * DPR; cv.height = h * DPR
+          ctx.setTransform(DPR, 0, 0, DPR, 0, 0)
+          cols = Math.ceil((w + 200) / GAP)
+        }
+        function noise(x, y, t) {
+          return (
+            Math.sin(x * 0.008 + t) * 8 +
+            Math.sin(y * 0.012 - t * 0.6) * 6 +
+            Math.sin((x + y) * 0.006 + t * 0.4) * 5
+          )
+        }
+        addEventListener('resize', resize)
+        addEventListener('mousemove', function (e) { mouse.x = e.clientX; mouse.y = e.clientY })
+        resize()
+        function frame(ms) {
+          var t = ms * 0.0004
+          mouse.sx += (mouse.x - mouse.sx) * 0.08
+          mouse.sy += (mouse.y - mouse.sy) * 0.08
+          ctx.clearRect(0, 0, w, h)
+          ctx.strokeStyle = 'rgba(0, 217, 255, 0.14)'
+          ctx.lineWidth = 1
+          for (var i = 0; i < cols; i++) {
+            var bx = i * GAP - 100
+            ctx.beginPath()
+            for (var y = -20; y < h + 20; y += GAP) {
+              var m = noise(bx, y, t)
+              var px = bx + Math.cos(m) * 12
+              var py = y + Math.sin(m) * 6
+              // cursor push
+              var dx = px - mouse.sx, dy = py - mouse.sy
+              var d = Math.hypot(dx, dy)
+              if (d < 160) { var s = (1 - d / 160) * 26; px += (dx / d) * s; py += (dy / d) * s }
+              if (y < 0) ctx.moveTo(px, py); else ctx.lineTo(px, py)
+            }
+            ctx.stroke()
+          }
+          requestAnimationFrame(frame)
+        }
+        requestAnimationFrame(frame)
+      })()
+    </script>
   </body>
 </html>
