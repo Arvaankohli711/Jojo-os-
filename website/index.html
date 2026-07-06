@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Jojo OS — Open-source personal AI command center</title>
+    <meta
+      name="description"
+      content="Jojo OS is an open-source personal AI command center for managing models, memory, skills, agents, MCP tools, files, voice, and local workflows from one desktop app."
+    />
+    <!-- Replace with your repo once published: -->
+    <meta property="og:title" content="Jojo OS — Open-source personal AI command center" />
+    <meta property="og:type" content="website" />
+    <style>
+      :root {
+        --bg0: #020712;
+        --bg1: #04111f;
+        --cyan: #00d9ff;
+        --blue: #168cff;
+        --text: #dbeafe;
+        --dim: #7590b5;
+        --line: rgba(0, 217, 255, 0.16);
+        --panel: rgba(8, 24, 46, 0.55);
+        --font: 'Inter', 'Segoe UI', system-ui, sans-serif;
+      }
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      body {
+        font-family: var(--font);
+        color: var(--text);
+        background:
+          repeating-linear-gradient(0deg, transparent 0 31px, rgba(0, 217, 255, 0.02) 31px 32px),
+          repeating-linear-gradient(90deg, transparent 0 31px, rgba(0, 217, 255, 0.02) 31px 32px),
+          radial-gradient(ellipse 90% 60% at 50% -10%, #0a2540 0%, var(--bg1) 45%, var(--bg0) 85%);
+        min-height: 100vh;
+        line-height: 1.6;
+      }
+      a { color: var(--cyan); text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      .wrap { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+      nav {
+        display: flex; align-items: center; justify-content: space-between;
+        padding: 20px 24px; max-width: 960px; margin: 0 auto;
+      }
+      .brand { font-weight: 700; letter-spacing: 0.14em; font-size: 18px; }
+      .brand b { color: var(--cyan); }
+      .nav-links { display: flex; gap: 22px; font-size: 14px; color: var(--dim); }
+      /* hero */
+      .hero { text-align: center; padding: 40px 0 30px; }
+      .orb {
+        width: 200px; height: 200px; margin: 0 auto 28px; border-radius: 50%;
+        background:
+          radial-gradient(circle at 38% 34%, #cdeeff 0%, var(--cyan) 22%, var(--blue) 55%, rgba(20,64,175,0.15) 100%);
+        box-shadow: 0 0 80px rgba(0, 140, 255, 0.4), inset -10px -14px 40px rgba(0,20,60,0.6);
+        animation: spin 26s linear infinite;
+        position: relative;
+      }
+      .orb::after {
+        content: ''; position: absolute; inset: -22px; border-radius: 50%;
+        border: 1px solid rgba(0,217,255,0.25);
+        box-shadow: 0 0 30px rgba(0,217,255,0.15);
+      }
+      @keyframes spin { to { transform: rotate(360deg); } }
+      h1 { font-size: 40px; letter-spacing: 0.02em; margin-bottom: 10px; }
+      .tag { color: var(--dim); font-size: 18px; margin-bottom: 26px; }
+      .cta { display: inline-flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+      .btn {
+        display: inline-block; padding: 12px 22px; border-radius: 12px; font-size: 14px;
+        border: 1px solid var(--line); color: var(--text); background: var(--panel);
+        cursor: pointer; transition: all .18s ease;
+      }
+      .btn.primary {
+        border-color: rgba(0,217,255,0.5);
+        background: linear-gradient(90deg, rgba(0,140,255,0.35), rgba(0,217,255,0.12));
+        box-shadow: 0 6px 22px rgba(0,120,255,0.25);
+      }
+      .btn:hover { border-color: rgba(0,217,255,0.5); }
+      /* sections */
+      section { padding: 34px 0; }
+      h2 { font-size: 13px; letter-spacing: 0.28em; color: var(--cyan); margin-bottom: 16px; font-weight: 600; }
+      .panel {
+        background: linear-gradient(180deg, rgba(14,28,54,0.6), rgba(8,16,34,0.5));
+        border: 1px solid var(--line); border-radius: 14px; padding: 18px 20px; backdrop-filter: blur(10px);
+      }
+      .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; }
+      .grid .panel strong { display: block; margin-bottom: 4px; }
+      .grid .panel span { color: var(--dim); font-size: 13px; }
+      /* download widget */
+      .dl { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+      .dl .panel { text-align: center; }
+      .dl .panel.soon { opacity: 0.55; }
+      code, pre { font-family: 'Cascadia Mono', Consolas, monospace; }
+      pre {
+        background: rgba(4,10,22,0.8); border: 1px solid var(--line); border-radius: 10px;
+        padding: 12px 14px; overflow-x: auto; font-size: 13px; color: #cfe8ff; margin-top: 10px;
+      }
+      .muted { color: var(--dim); font-size: 13px; }
+      footer { padding: 30px 0 50px; color: var(--dim); font-size: 13px; text-align: center; }
+      @media (max-width: 560px) { .dl { grid-template-columns: 1fr; } h1 { font-size: 30px; } }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <div class="brand">JOJO <b>OS</b></div>
+      <div class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#download">Download</a>
+        <a href="#about">About</a>
+        <a href="https://github.com/your-username/jojo-os">GitHub</a>
+      </div>
+    </nav>
+
+    <div class="wrap">
+      <header class="hero">
+        <div class="orb"></div>
+        <h1>Jojo OS</h1>
+        <p class="tag">Open-source personal AI command center</p>
+        <div class="cta">
+          <a class="btn primary" href="#download">Download</a>
+          <a class="btn" href="https://github.com/your-username/jojo-os">View on GitHub</a>
+        </div>
+      </header>
+
+      <section>
+        <h2>WHAT IT SOLVES</h2>
+        <div class="panel">
+          AI tools are scattered — keys in a dozen places, context lost between sessions, the same
+          prompts and setups rebuilt for every project. Jojo OS puts models, memory, skills, agents,
+          MCP tools, files and voice in one local hub, with a security model that keeps secrets and
+          private notes out of anything you share.
+        </div>
+      </section>
+
+      <section id="features">
+        <h2>FEATURES</h2>
+        <div class="grid">
+          <div class="panel"><strong>Model Hub</strong><span>Many providers & models, favorites, per-purpose defaults, real tests.</span></div>
+          <div class="panel"><strong>Jojo Vault</strong><span>Local Markdown memory with pins, tags, backlinks, auto-recall.</span></div>
+          <div class="panel"><strong>Skills & Agents</strong><span>Reusable SKILL.md packs and scoped, safe agent presets.</span></div>
+          <div class="panel"><strong>Loops</strong><span>Manual / scheduled / event automations — disabled by default.</span></div>
+          <div class="panel"><strong>MCP</strong><span>Paste a link to connect servers; deny-by-default tools, per-call approval.</span></div>
+          <div class="panel"><strong>Voice</strong><span>Push-to-talk input + system speech output, fully optional.</span></div>
+        </div>
+      </section>
+
+      <section id="download">
+        <h2>DOWNLOAD</h2>
+        <div class="dl">
+          <div class="panel"><strong>Windows</strong><br /><span class="muted">Installer not published yet — build from source.</span></div>
+          <div class="panel soon"><strong>macOS</strong><br /><span class="muted">Coming soon</span></div>
+          <div class="panel soon"><strong>Linux</strong><br /><span class="muted">Coming soon</span></div>
+        </div>
+        <p class="muted" style="margin-top:14px">Build from source:</p>
+        <pre>npm install
+npm run build
+npm run build:win   # Windows installer (dist/)</pre>
+        <p class="muted" style="margin-top:10px">
+          Open-source · Apache License 2.0 ·
+          <a href="https://github.com/your-username/jojo-os/releases">GitHub Releases</a>
+          (link goes live once the first release is published).
+        </p>
+      </section>
+
+      <section>
+        <h2>PRIVACY &amp; SECURITY</h2>
+        <div class="panel">
+          Jojo OS runs entirely on your computer. There is no Jojo OS backend, no login, and no
+          telemetry — the developer cannot access your API keys, prompts, files, or memories. Keys
+          are encrypted with your OS keychain and only sent to the AI provider you pick. MCP tools
+          and agents are deny-by-default and dangerous actions ask for approval.
+        </div>
+      </section>
+
+      <section id="about">
+        <h2>ABOUT JOJO OS</h2>
+        <div class="panel">
+          <p>
+            Jojo OS is an open-source personal AI command center for managing models, memory, skills,
+            agents, MCP tools, files, voice, and local workflows from one desktop app.
+          </p>
+          <p style="margin-top:12px">
+            Jojo OS is named after Jojo, my dog. He was my best friend, and my whole family misses
+            him a lot. I wanted to name this project after him because the app is meant to feel loyal,
+            helpful, and always there when you need it.
+          </p>
+        </div>
+      </section>
+
+      <section>
+        <h2>ROADMAP</h2>
+        <div class="panel muted">
+          Published Windows installer · macOS &amp; Linux builds · richer per-page UI · dedicated
+          Sync Center exports · optional local Whisper bundling. See the repo ROADMAP for details.
+        </div>
+      </section>
+
+      <footer>
+        Jojo OS is experimental open-source software provided as-is. You are responsible for how you
+        configure and use it, especially with APIs, files, credentials, MCP tools, agents, loops and
+        automation. · Apache-2.0 ·
+        <a href="https://github.com/your-username/jojo-os">GitHub</a>
+      </footer>
+    </div>
+  </body>
+</html>
