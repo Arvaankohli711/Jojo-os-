@@ -1,5 +1,4 @@
 import OrbVideo from '../components/OrbVideo'
-import DownloadCounter from '../components/DownloadCounter'
 
 const FEATURES = [
   'Model Hub — many providers & models, favorites, per-purpose defaults, real tests',
@@ -64,34 +63,6 @@ function About(): React.JSX.Element {
           open-source software — you are responsible for how you configure and use it, especially
           with APIs, files, credentials, MCP tools, agents, loops, and automation.
         </p>
-      </div>
-
-      <div className="panel">
-        <h3 className="panel-h">DOWNLOAD / INSTALL</h3>
-        <div className="dl-grid">
-          <div className="dl-card">
-            <strong>Windows</strong>
-            <span className="micro dim">
-              Installer not published yet — build from source for now.
-            </span>
-          </div>
-          <div className="dl-card dl-soon">
-            <strong>macOS</strong>
-            <span className="micro dim">Coming soon</span>
-          </div>
-          <div className="dl-card dl-soon">
-            <strong>Linux</strong>
-            <span className="micro dim">Coming soon</span>
-          </div>
-        </div>
-        <p className="micro dim" style={{ marginTop: 8 }}>
-          Build from source:
-        </p>
-        <pre className="confirm-args">npm install{'\n'}npm run build{'\n'}npm run build:win # Windows installer</pre>
-        <p className="micro dim">
-          Open-source · Apache License 2.0 · GitHub release link will appear here once published.
-        </p>
-        <DownloadCounter />
       </div>
 
       <div className="panel">

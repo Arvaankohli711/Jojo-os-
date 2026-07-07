@@ -14,7 +14,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;900&family=Chakra+Petch:wght@500;600;700&family=Inter:wght@400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Chakra+Petch:wght@500;600;700&family=Inter:wght@400;500&display=swap"
       rel="stylesheet"
     />
     <style>
@@ -28,8 +28,8 @@
         --line: rgba(0, 217, 255, 0.16);
         --panel: rgba(8, 24, 46, 0.55);
         --font: 'Inter', 'Segoe UI', system-ui, sans-serif;
-        --display: 'Orbitron', 'Chakra Petch', system-ui, sans-serif;
-        --label: 'Chakra Petch', 'Orbitron', system-ui, sans-serif;
+        --display: 'Sora', 'Chakra Petch', system-ui, sans-serif;
+        --label: 'Chakra Petch', 'Sora', system-ui, sans-serif;
       }
       * { box-sizing: border-box; margin: 0; padding: 0; }
       .waves-bg {
@@ -71,11 +71,12 @@
       }
       @keyframes spin { to { transform: rotate(360deg); } }
       h1 {
-        font-family: var(--display); font-weight: 900; font-size: 52px;
+        font-family: var(--display); font-weight: 800;
+        font-size: clamp(30px, 7vw, 52px);
         letter-spacing: 0.02em; margin-bottom: 12px; text-transform: uppercase;
         text-shadow: 0 0 26px rgba(0, 180, 255, 0.35);
       }
-      .tag { color: var(--dim); font-size: 18px; margin-bottom: 26px; }
+      .tag { color: var(--dim); font-size: clamp(15px, 3.4vw, 18px); margin-bottom: 26px; }
       .cta { display: inline-flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
       .btn {
         display: inline-block; padding: 12px 22px; border-radius: 12px; font-size: 14px;
@@ -104,7 +105,7 @@
       .grid .panel strong { display: block; margin-bottom: 4px; }
       .grid .panel span { color: var(--dim); font-size: 13px; }
       /* download widget */
-      .dl { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+      .dl { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px; }
       .dl .panel { text-align: center; }
       .dl .panel.soon { opacity: 0.55; }
       code, pre { font-family: 'Cascadia Mono', Consolas, monospace; }
@@ -114,7 +115,17 @@
       }
       .muted { color: var(--dim); font-size: 13px; }
       footer { padding: 30px 0 50px; color: var(--dim); font-size: 13px; text-align: center; }
-      @media (max-width: 560px) { .dl { grid-template-columns: 1fr; } h1 { font-size: 30px; } }
+      @media (max-width: 720px) {
+        nav { flex-wrap: wrap; gap: 10px 16px; padding: 16px 18px; }
+        .wrap { padding: 0 18px; }
+        section { padding: 26px 0; }
+        .orb-wrap { width: 170px; height: 170px; margin-bottom: 20px; }
+      }
+      @media (max-width: 460px) {
+        .nav-links { gap: 14px; font-size: 13px; }
+        .cta { display: flex; }
+        .cta .btn { flex: 1; text-align: center; }
+      }
     </style>
   </head>
   <body>

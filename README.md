@@ -4,6 +4,13 @@
 
 **Open-source personal AI command center**
 
+[![License](https://img.shields.io/badge/license-Apache%202.0-2b7fff)](LICENSE)
+[![Latest release](https://img.shields.io/github/v/release/Arvaankohli711/Jojo-os-?color=00b8ff)](https://github.com/Arvaankohli711/Jojo-os-/releases/latest)
+[![Platforms](https://img.shields.io/badge/desktop-Windows%20%7C%20macOS%20%7C%20Linux-00d9ff)](#download)
+[![Website](https://img.shields.io/badge/website-jojo--os.vercel.app-7c3aed)](https://jojo-os.vercel.app)
+
+[**Website**](https://jojo-os.vercel.app) · [**Download**](#download) · [**Releases**](https://github.com/Arvaankohli711/Jojo-os-/releases)
+
 </div>
 
 Jojo OS is an open-source personal AI command center for managing AI models, memory, skills, agents, and MCP tools — plus safe local workflows — from one desktop app. It helps you connect your AI tools without leaking secrets, losing context, or manually rebuilding the same workflows across Claude, Codex, local models, and GitHub projects.
@@ -22,15 +29,17 @@ AI tools are scattered — keys in a dozen places, context lost between sessions
 
 ## Download
 
-| Platform | Status |
+Latest: **v0.1.0** · grab the installer for your platform from the [**Releases page**](https://github.com/Arvaankohli711/Jojo-os-/releases/latest) or the [**website**](https://jojo-os.vercel.app#download).
+
+| Platform | Downloads |
 | --- | --- |
-| **Windows** | Installer not published yet — build from source (below). |
-| **macOS** | Coming soon |
-| **Linux** | Coming soon |
+| **Windows** | [x64 (Intel/AMD)](https://github.com/Arvaankohli711/Jojo-os-/releases/download/v0.1.0/jojo-os-0.1.0-setup.exe) · [ARM64](https://github.com/Arvaankohli711/Jojo-os-/releases/download/v0.1.0/jojo-os-0.1.0-arm64-setup.exe) |
+| **macOS** | [Apple Silicon](https://github.com/Arvaankohli711/Jojo-os-/releases/download/v0.1.0/jojo-os-0.1.0-arm64.dmg) · [Intel](https://github.com/Arvaankohli711/Jojo-os-/releases/download/v0.1.0/jojo-os-0.1.0-x64.dmg) |
+| **Linux** | [AppImage](https://github.com/Arvaankohli711/Jojo-os-/releases/download/v0.1.0/jojo-os-0.1.0-x64.AppImage) · [.deb](https://github.com/Arvaankohli711/Jojo-os-/releases/download/v0.1.0/jojo-os_0.1.0_amd64.deb) |
 
-> Windows build available via source. macOS and Linux builds coming soon. No prebuilt download links exist yet — a GitHub Releases link will appear here once the first installer is published.
+> Installers are unsigned — Windows: **More info → Run anyway**; macOS: right-click → **Open**.
 
-Build from source:
+Or build from source:
 
 ```bash
 npm install

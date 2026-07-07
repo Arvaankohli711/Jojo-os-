@@ -56,6 +56,16 @@ function createWindow(): void {
     return { action: 'deny' }
   })
 
+  // Block any in-app navigation away from the bundled renderer. Nothing should
+  // ever replace the app UI with a remote page; external links are handled above.
+  mainWindow.webContents.on('will-navigate', (event, url) => {
+    const dev = process.env['ELECTRON_RENDERER_URL']
+    if (dev && url.startsWith(dev)) return
+    if (url.startsWith('file://')) return
+    event.preventDefault()
+    shell.openExternal(url)
+  })
+
   if (is.dev && process.env['ELECTRON_RENDERER_URL']) {
     mainWindow.loadURL(process.env['ELECTRON_RENDERER_URL'])
   } else {
