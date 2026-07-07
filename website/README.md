@@ -17,4 +17,4 @@ build needs them, copy `.env.example` — public values only, never secrets.
 
 ## Before it's live, replace the placeholder links
 
-Edit `index.html` and swap `https://github.com/your-username/jojo-os` for your real repo URL.
+Edit `index.html` and swap `https://github.com/Arvaankohli711/Jojo-os-` for your real repo URL.

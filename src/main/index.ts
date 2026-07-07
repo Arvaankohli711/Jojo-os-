@@ -259,7 +259,7 @@ app.whenReady().then(() => {
   // Set REPO_SLUG to 'owner/repo' once the repo is public with a release.
   // Empty = not published yet → UI shows "not published yet" (no fake number).
   ipcMain.handle('downloads', async () => {
-    const REPO_SLUG = ''
+    const REPO_SLUG = 'Arvaankohli711/Jojo-os-'
     if (!REPO_SLUG) return null
     try {
       const res = await fetch(`https://api.github.com/repos/${REPO_SLUG}/releases`, {
