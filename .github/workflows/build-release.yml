@@ -21,10 +21,10 @@ jobs:
       matrix:
         include:
           - os: macos-latest
-            build: npx electron-builder --mac dmg --x64 --arm64
+            build: npx electron-builder --mac dmg --x64 --arm64 --publish never
             artifacts: dist/*.dmg
           - os: ubuntu-latest
-            build: npx electron-builder --linux AppImage deb --x64
+            build: npx electron-builder --linux AppImage deb --x64 --publish never
             artifacts: dist/*.AppImage dist/*.deb
     runs-on: ${{ matrix.os }}
     steps:
