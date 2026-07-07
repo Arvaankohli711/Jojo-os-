@@ -1352,7 +1352,11 @@ textarea {
 .hub-main .chat {
   flex: 1;
   min-height: 0;
-  max-width: none; /* fill the hub on wide screens instead of capping at 820px */
+  width: 100%;
+  /* auto-adjust: fills small screens, centers under the orb and caps on wide
+     ones so the input never stretches absurdly or looks tiny. */
+  max-width: min(100%, 1100px);
+  margin: 0 auto;
 }
 
 .sidebar-logo-img {
