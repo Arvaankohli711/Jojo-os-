@@ -14,7 +14,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;900&family=Chakra+Petch:wght@500;600;700&family=Inter:wght@400;500&display=swap"
       rel="stylesheet"
     />
     <style>
@@ -28,7 +28,8 @@
         --line: rgba(0, 217, 255, 0.16);
         --panel: rgba(8, 24, 46, 0.55);
         --font: 'Inter', 'Segoe UI', system-ui, sans-serif;
-        --display: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+        --display: 'Orbitron', 'Chakra Petch', system-ui, sans-serif;
+        --label: 'Chakra Petch', 'Orbitron', system-ui, sans-serif;
       }
       * { box-sizing: border-box; margin: 0; padding: 0; }
       .waves-bg {
@@ -53,32 +54,37 @@
         display: flex; align-items: center; justify-content: space-between;
         padding: 20px 24px; max-width: 960px; margin: 0 auto;
       }
-      .brand { font-family: var(--display); font-weight: 700; letter-spacing: 0.14em; font-size: 18px; }
+      .brand { font-family: var(--display); font-weight: 700; letter-spacing: 0.16em; font-size: 17px; }
       .brand b { color: var(--cyan); }
       .nav-links { display: flex; gap: 22px; font-size: 14px; color: var(--dim); }
+      .nav-links a { font-family: var(--label); font-weight: 500; letter-spacing: 0.04em; }
       /* hero */
-      .hero { text-align: center; padding: 40px 0 30px; }
-      .orb {
-        width: 200px; height: 200px; margin: 0 auto 28px; border-radius: 50%;
-        background:
-          radial-gradient(circle at 38% 34%, #cdeeff 0%, var(--cyan) 22%, var(--blue) 55%, rgba(20,64,175,0.15) 100%);
-        box-shadow: 0 0 48px rgba(0, 140, 255, 0.28), inset -10px -14px 40px rgba(0,20,60,0.6);
-        animation: spin 26s linear infinite;
-        position: relative;
+      .hero { text-align: center; padding: 30px 0 24px; }
+      .orb-wrap {
+        width: 220px; height: 220px; margin: 0 auto 26px; border-radius: 50%;
+        display: grid; place-items: center; overflow: hidden; position: relative;
+        box-shadow: 0 0 60px rgba(0, 140, 255, 0.28);
       }
-      .orb::after {
-        content: ''; position: absolute; inset: -20px; border-radius: 50%;
-        border: 1px solid rgba(0,217,255,0.14);
+      .orb-wrap video {
+        width: 108%; height: 108%; object-fit: cover; mix-blend-mode: screen;
+        animation: spin 30s linear infinite;
       }
       @keyframes spin { to { transform: rotate(360deg); } }
-      h1 { font-family: var(--display); font-weight: 600; font-size: 44px; letter-spacing: -0.01em; margin-bottom: 10px; }
+      h1 {
+        font-family: var(--display); font-weight: 900; font-size: 52px;
+        letter-spacing: 0.02em; margin-bottom: 12px; text-transform: uppercase;
+        text-shadow: 0 0 26px rgba(0, 180, 255, 0.35);
+      }
       .tag { color: var(--dim); font-size: 18px; margin-bottom: 26px; }
       .cta { display: inline-flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
       .btn {
         display: inline-block; padding: 12px 22px; border-radius: 12px; font-size: 14px;
+        font-family: var(--label); font-weight: 600; letter-spacing: 0.04em;
         border: 1px solid var(--line); color: var(--text); background: var(--panel);
         cursor: pointer; transition: all .18s ease;
       }
+      .dl-btn { margin: 8px 0 6px; }
+      .dl .panel .muted { display: block; margin-top: 2px; }
       .btn.primary {
         border-color: rgba(0,217,255,0.5);
         background: linear-gradient(90deg, rgba(0,140,255,0.35), rgba(0,217,255,0.12));
@@ -87,7 +93,7 @@
       .btn:hover { border-color: rgba(0,217,255,0.5); }
       /* sections */
       section { padding: 34px 0; }
-      h2 { font-family: var(--display); font-size: 13px; letter-spacing: 0.28em; color: var(--cyan); margin-bottom: 16px; font-weight: 600; }
+      h2 { font-family: var(--label); font-size: 13px; letter-spacing: 0.3em; color: var(--cyan); margin-bottom: 16px; font-weight: 700; text-transform: uppercase; }
       .panel {
         background: linear-gradient(180deg, rgba(14,28,54,0.6), rgba(8,16,34,0.5));
         border: 1px solid var(--line); border-radius: 14px; padding: 18px 20px; backdrop-filter: blur(10px);
@@ -123,7 +129,9 @@
 
     <div class="wrap">
       <header class="hero">
-        <div class="orb"></div>
+        <div class="orb-wrap">
+          <video src="orb.mp4" autoplay loop muted playsinline aria-hidden="true"></video>
+        </div>
         <h1>Jojo OS</h1>
         <p class="tag">Open-source personal AI command center</p>
         <div class="cta">
@@ -157,18 +165,28 @@
       <section id="download">
         <h2>DOWNLOAD</h2>
         <div class="dl">
-          <div class="panel"><strong>Windows</strong><br /><span class="muted">Installer not published yet — build from source.</span></div>
+          <div class="panel">
+            <strong>Windows</strong><br />
+            <a
+              class="btn primary dl-btn"
+              href="https://github.com/Arvaankohli711/Jojo-os-/releases/download/v0.1.0/jojo-os-0.1.0-setup.exe"
+              >Download .exe</a
+            >
+            <span class="muted">v0.1.0 · 64-bit installer</span>
+          </div>
           <div class="panel soon"><strong>macOS</strong><br /><span class="muted">Coming soon</span></div>
           <div class="panel soon"><strong>Linux</strong><br /><span class="muted">Coming soon</span></div>
         </div>
-        <p class="muted" style="margin-top:14px">Build from source:</p>
+        <p class="muted" style="margin-top:14px">
+          Windows may warn on an unsigned installer — click <em>More info → Run anyway</em>. Prefer to
+          build it yourself?
+        </p>
         <pre>npm install
 npm run build
 npm run build:win   # Windows installer (dist/)</pre>
         <p class="muted" style="margin-top:10px">
           Open-source · Apache License 2.0 ·
-          <a href="https://github.com/Arvaankohli711/Jojo-os-/releases">GitHub Releases</a>
-          (link goes live once the first release is published).
+          <a href="https://github.com/Arvaankohli711/Jojo-os-/releases">All releases</a>
         </p>
       </section>
 
