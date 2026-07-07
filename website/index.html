@@ -83,8 +83,10 @@
         border: 1px solid var(--line); color: var(--text); background: var(--panel);
         cursor: pointer; transition: all .18s ease;
       }
-      .dl-btn { margin: 8px 0 6px; }
-      .dl .panel .muted { display: block; margin-top: 2px; }
+      .dl .panel { display: flex; flex-direction: column; gap: 8px; align-items: center; }
+      .dl-arch { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
+      .dl-arch .btn { padding: 9px 14px; font-size: 13px; }
+      .dl .panel .muted { display: block; }
       .btn.primary {
         border-color: rgba(0,217,255,0.5);
         background: linear-gradient(90deg, rgba(0,140,255,0.35), rgba(0,217,255,0.12));
@@ -166,20 +168,33 @@
         <h2>DOWNLOAD</h2>
         <div class="dl">
           <div class="panel">
-            <strong>Windows</strong><br />
-            <a
-              class="btn primary dl-btn"
-              href="https://github.com/Arvaankohli711/Jojo-os-/releases/download/v0.1.0/jojo-os-0.1.0-setup.exe"
-              >Download .exe</a
-            >
-            <span class="muted">v0.1.0 · 64-bit installer</span>
+            <strong>Windows</strong>
+            <div class="dl-arch">
+              <a class="btn primary" href="https://github.com/Arvaankohli711/Jojo-os-/releases/download/v0.1.0/jojo-os-0.1.0-setup.exe">x64 · Intel / AMD</a>
+              <a class="btn" href="https://github.com/Arvaankohli711/Jojo-os-/releases/download/v0.1.0/jojo-os-0.1.0-arm64-setup.exe">ARM64</a>
+            </div>
+            <span class="muted">v0.1.0 · .exe installer</span>
           </div>
-          <div class="panel soon"><strong>macOS</strong><br /><span class="muted">Coming soon</span></div>
-          <div class="panel soon"><strong>Linux</strong><br /><span class="muted">Coming soon</span></div>
+          <div class="panel">
+            <strong>macOS</strong>
+            <div class="dl-arch">
+              <a class="btn" href="https://github.com/Arvaankohli711/Jojo-os-/releases/download/v0.1.0/jojo-os-0.1.0-arm64.dmg">Apple Silicon</a>
+              <a class="btn" href="https://github.com/Arvaankohli711/Jojo-os-/releases/download/v0.1.0/jojo-os-0.1.0-x64.dmg">Intel</a>
+            </div>
+            <span class="muted">.dmg · built by CI</span>
+          </div>
+          <div class="panel">
+            <strong>Linux</strong>
+            <div class="dl-arch">
+              <a class="btn" href="https://github.com/Arvaankohli711/Jojo-os-/releases/download/v0.1.0/jojo-os-0.1.0-x64.AppImage">AppImage</a>
+              <a class="btn" href="https://github.com/Arvaankohli711/Jojo-os-/releases/download/v0.1.0/jojo-os_0.1.0_amd64.deb">.deb</a>
+            </div>
+            <span class="muted">x64 · built by CI</span>
+          </div>
         </div>
         <p class="muted" style="margin-top:14px">
-          Windows may warn on an unsigned installer — click <em>More info → Run anyway</em>. Prefer to
-          build it yourself?
+          Windows/macOS may warn on an unsigned build — Windows: <em>More info → Run anyway</em>;
+          macOS: right-click → <em>Open</em>. Prefer to build it yourself?
         </p>
         <pre>npm install
 npm run build
