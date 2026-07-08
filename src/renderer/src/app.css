@@ -1275,6 +1275,134 @@ textarea {
   max-width: 220px;
 }
 
+/* ---------- searchable model picker ---------- */
+.mp {
+  position: relative;
+}
+.mp-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  max-width: 280px;
+  padding: 6px 10px;
+  background: rgba(4, 10, 22, 0.8);
+  border: 1px solid var(--line-strong);
+  border-radius: 8px;
+  color: var(--text);
+  font-size: 11px;
+  cursor: pointer;
+}
+.mp-btn:hover {
+  border-color: var(--cyan);
+}
+.mp-btn-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.mp-btn-tag {
+  flex: none;
+  font-size: 8px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 1px 5px;
+}
+.mp-caret {
+  flex: none;
+  color: var(--dim);
+  font-size: 9px;
+}
+.mp-pop {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  z-index: 50;
+  width: 320px;
+  max-width: 84vw;
+  background: rgba(6, 16, 30, 0.98);
+  border: 1px solid var(--line-strong);
+  border-radius: 10px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+  padding: 8px;
+  backdrop-filter: blur(8px);
+}
+.mp-search {
+  width: 100%;
+  padding: 8px 10px;
+  background: rgba(4, 10, 22, 0.9);
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  color: var(--text);
+  font-size: 12px;
+  font-family: var(--font);
+  outline: none;
+}
+.mp-search:focus {
+  border-color: var(--cyan);
+}
+.mp-auto {
+  width: 100%;
+  margin: 6px 0;
+  padding: 7px 10px;
+  text-align: left;
+  background: rgba(56, 189, 248, 0.1);
+  border: 1px solid var(--line-strong);
+  border-radius: 7px;
+  color: var(--cyan);
+  font-size: 11px;
+  cursor: pointer;
+}
+.mp-auto:hover {
+  background: rgba(56, 189, 248, 0.2);
+}
+.mp-list {
+  max-height: 300px;
+  overflow-y: auto;
+}
+.mp-empty {
+  color: var(--dim);
+  font-size: 11px;
+  padding: 8px;
+}
+.mp-group-h {
+  font-size: 8px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--dim);
+  padding: 8px 6px 4px;
+}
+.mp-item {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  width: 100%;
+  padding: 6px 8px;
+  text-align: left;
+  background: none;
+  border: none;
+  border-radius: 6px;
+  color: var(--text);
+  cursor: pointer;
+}
+.mp-item:hover {
+  background: rgba(56, 189, 248, 0.1);
+}
+.mp-item.active {
+  background: rgba(56, 189, 248, 0.16);
+  box-shadow: inset 0 0 0 1px var(--line-strong);
+}
+.mp-item-name {
+  font-size: 12px;
+}
+.mp-item-id {
+  font-size: 9px;
+  color: var(--dim);
+  font-family: var(--mono);
+}
+
 /* ---------- unified hub ---------- */
 
 .hub {

@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import type { AgentEvent, ChatMessage, ChatMode, DefaultModel, SavedModel } from '../../../shared/types'
 import { useVoice } from '../useVoice'
 import type { CoreState } from '../components/AICore'
+import ModelPicker from '../components/ModelPicker'
 
 const MODES: { id: ChatMode; label: string }[] = [
   { id: 'normal', label: 'Normal' },
@@ -138,32 +139,22 @@ function Chat({ initialInput = '', onCoreState }: Props): React.JSX.Element {
     else voice.listen((text) => setInput((cur) => (cur ? `${cur} ${text}` : text)))
   }
 
-  const favFirst = [...saved].sort((a, b) => Number(b.favorite) - Number(a.favorite))
   const activeId = saved.find((m) => def && m.providerId === def.providerId && m.modelId === def.model)?.id ?? ''
 
   return (
     <div className="chat">
       <div className="chat-head">
         {saved.length > 0 ? (
-          <select
-            className="model-picker"
-            value={activeId}
-            onChange={async (e) => {
-              if (e.target.value) {
-                await window.jojo.setActiveModel(e.target.value)
-                refreshModel()
-              }
-            }}
+          <ModelPicker
+            saved={saved}
+            activeId={activeId}
+            mode={mode}
             disabled={busy}
-            title="Switch active model"
-          >
-            {favFirst.map((m) => (
-              <option key={m.id} value={m.id}>
-                {m.favorite ? '★ ' : ''}
-                {m.displayName}
-              </option>
-            ))}
-          </select>
+            onPick={async (id) => {
+              await window.jojo.setActiveModel(id)
+              refreshModel()
+            }}
+          />
         ) : (
           <span className="micro">
             MODEL: {def ? <span className="hl">{def.model}</span> : '— add one in MODEL HUB'}
