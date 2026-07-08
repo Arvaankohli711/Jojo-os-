@@ -11,7 +11,7 @@ const FEATURES = [
 ]
 
 // Version stays in sync with package.json manually; ponytail: not worth an IPC.
-const VERSION = 'v0.2.0'
+const VERSION = 'v0.1.1'
 
 function About(): React.JSX.Element {
   return (

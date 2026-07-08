@@ -134,9 +134,16 @@ function Chat({ initialInput = '', onCoreState }: Props): React.JSX.Element {
   }
 
   const mic = (): void => {
-    // Push-to-talk: transcript lands in the input for review, not auto-sent.
-    if (voice.status === 'listening') voice.stop()
-    else voice.listen((text) => setInput((cur) => (cur ? `${cur} ${text}` : text)))
+    // Hands-free voice: tap mic → speak → auto-send → Jojo speaks the reply back
+    // (orb animates via CoreState). Unmute so replies are actually spoken.
+    if (voice.status === 'listening') {
+      voice.stop()
+      return
+    }
+    voice.setMuted(false)
+    voice.listen((text) => {
+      if (text.trim()) runSend(text)
+    })
   }
 
   const activeId = saved.find((m) => def && m.providerId === def.providerId && m.modelId === def.model)?.id ?? ''

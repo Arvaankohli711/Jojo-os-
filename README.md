@@ -29,13 +29,13 @@ AI tools are scattered — keys in a dozen places, context lost between sessions
 
 ## Download
 
-Latest: **v0.1.0** · grab the installer for your platform from the [**Releases page**](https://github.com/Arvaankohli711/Jojo-os-/releases/latest) or the [**website**](https://jojo-os.vercel.app#download).
+Latest: **v0.1.1** · grab the installer for your platform from the [**Releases page**](https://github.com/Arvaankohli711/Jojo-os-/releases/latest) or the [**website**](https://jojo-os.vercel.app#download).
 
 | Platform | Downloads |
 | --- | --- |
-| **Windows** | [x64 (Intel/AMD)](https://github.com/Arvaankohli711/Jojo-os-/releases/download/v0.1.0/jojo-os-0.1.0-setup.exe) · [ARM64](https://github.com/Arvaankohli711/Jojo-os-/releases/download/v0.1.0/jojo-os-0.1.0-arm64-setup.exe) |
-| **macOS** | [Apple Silicon](https://github.com/Arvaankohli711/Jojo-os-/releases/download/v0.1.0/jojo-os-0.1.0-arm64.dmg) · [Intel](https://github.com/Arvaankohli711/Jojo-os-/releases/download/v0.1.0/jojo-os-0.1.0-x64.dmg) |
-| **Linux** | [AppImage](https://github.com/Arvaankohli711/Jojo-os-/releases/download/v0.1.0/jojo-os-0.1.0-x86_64.AppImage) · [.deb](https://github.com/Arvaankohli711/Jojo-os-/releases/download/v0.1.0/jojo-os_0.1.0_amd64.deb) |
+| **Windows** | [x64 (Intel/AMD)](https://github.com/Arvaankohli711/Jojo-os-/releases/download/v0.1.1/jojo-os-0.1.1-setup.exe) · [ARM64](https://github.com/Arvaankohli711/Jojo-os-/releases/download/v0.1.1/jojo-os-0.1.1-arm64-setup.exe) |
+| **macOS** | [Apple Silicon](https://github.com/Arvaankohli711/Jojo-os-/releases/download/v0.1.1/jojo-os-0.1.1-arm64.dmg) · [Intel](https://github.com/Arvaankohli711/Jojo-os-/releases/download/v0.1.1/jojo-os-0.1.1-x64.dmg) |
+| **Linux** | [AppImage](https://github.com/Arvaankohli711/Jojo-os-/releases/download/v0.1.1/jojo-os-0.1.1-x86_64.AppImage) · [.deb](https://github.com/Arvaankohli711/Jojo-os-/releases/download/v0.1.1/jojo-os_0.1.1_amd64.deb) |
 
 > Installers are unsigned — Windows: **More info → Run anyway**; macOS: right-click → **Open**.
 
