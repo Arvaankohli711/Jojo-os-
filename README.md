@@ -33,7 +33,7 @@ Latest: **v0.1.1** · grab the installer for your platform from the [**Releases 
 
 | Platform | Downloads |
 | --- | --- |
-| **Windows** | [x64 (Intel/AMD)](https://github.com/Arvaankohli711/Jojo-os-/releases/download/v0.1.1/jojo-os-0.1.1-setup.exe) · [ARM64](https://github.com/Arvaankohli711/Jojo-os-/releases/download/v0.1.1/jojo-os-0.1.1-arm64-setup.exe) |
+| **Windows** | [x64 (Intel/AMD)](https://github.com/Arvaankohli711/Jojo-os-/releases/download/v0.1.1/jojo-os-0.1.1-x64-setup.exe) · [ARM64](https://github.com/Arvaankohli711/Jojo-os-/releases/download/v0.1.1/jojo-os-0.1.1-arm64-setup.exe) |
 | **macOS** | [Apple Silicon](https://github.com/Arvaankohli711/Jojo-os-/releases/download/v0.1.1/jojo-os-0.1.1-arm64.dmg) · [Intel](https://github.com/Arvaankohli711/Jojo-os-/releases/download/v0.1.1/jojo-os-0.1.1-x64.dmg) |
 | **Linux** | [AppImage](https://github.com/Arvaankohli711/Jojo-os-/releases/download/v0.1.1/jojo-os-0.1.1-x86_64.AppImage) · [.deb](https://github.com/Arvaankohli711/Jojo-os-/releases/download/v0.1.1/jojo-os_0.1.1_amd64.deb) |
 
