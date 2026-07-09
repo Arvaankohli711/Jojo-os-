@@ -124,46 +124,11 @@ export function useVoice(): Voice {
   const listen = useCallback(
     (onText: (text: string) => void): void => {
       setError('')
-      // Prefer browser STT (instant, free). Otherwise fall back to a configured
-      // local Whisper endpoint. If neither, say so honestly.
-      if (!sttAvailable) {
-        window.jojo
-          .getSettings()
-          .then((s) => {
-            if (s.sttEndpoint) void recordAndTranscribe(onText)
-            else {
-              setError(
-                'No speech-to-text available. Browser STT is not in this build. Add a local Whisper endpoint in Voice settings (e.g. a faster-whisper server), or type instead.'
-              )
-              setStatus('error')
-            }
-          })
-          .catch(() => setStatus('error'))
-        return
-      }
-      try {
-      const rec = new SR()
-      rec.lang = 'en-US'
-      rec.interimResults = false
-      rec.maxAlternatives = 1
-      rec.onstart = () => setStatus('listening')
-      rec.onerror = (e: { error?: string }) => {
-        setError(`Speech error: ${e.error ?? 'unknown'} (mic permission or no speech backend)`)
-        setStatus('error')
-      }
-      rec.onresult = (e: { results: { [k: number]: { [k: number]: { transcript: string } } } }) => {
-        setStatus('transcribing')
-        const text = e.results[0][0].transcript
-        onText(text)
-        setStatus('off')
-      }
-      rec.onend = () => setStatus((s) => (s === 'listening' ? 'off' : s))
-      recRef.current = rec
-      rec.start()
-      } catch (err) {
-        setError(err instanceof Error ? err.message : String(err))
-        setStatus('error')
-      }
+      // Record the mic and transcribe via the backend (local Whisper endpoint or
+      // a Whisper-capable API provider). We deliberately do NOT use the browser
+      // SpeechRecognition API: in Electron it has no speech backend and always
+      // fails with a "network" error. MediaRecorder + Whisper is reliable.
+      void recordAndTranscribe(onText)
     },
     [recordAndTranscribe]
   )

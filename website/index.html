@@ -204,9 +204,11 @@
           </div>
         </div>
         <p class="muted" style="margin-top:14px">
-          Windows/macOS may warn on an unsigned build — Windows: <em>More info → Run anyway</em>;
-          macOS: right-click → <em>Open</em>. Prefer to build it yourself?
+          Builds are unsigned. <b>Windows:</b> More info → Run anyway. <b>macOS:</b> if it says
+          “damaged / can’t be opened”, that’s Gatekeeper quarantine — open Terminal and run:
         </p>
+        <pre>xattr -dr com.apple.quarantine "/Applications/Jojo OS.app"</pre>
+        <p class="muted" style="margin-top:10px">Then launch it normally. Or build from source:</p>
         <pre>npm install
 npm run build
 npm run build:win   # Windows installer (dist/)</pre>

@@ -14,7 +14,7 @@ import {
   type VaultFolder
 } from '../shared/types'
 
-const MAX_TURNS = 8
+const MAX_TURNS = 12
 
 // Each mode tunes the persona and which built-in tools are exposed. fetch_url
 // (read-only web) and MCP tools (each confirmed) are available in every mode.
@@ -34,8 +34,13 @@ const WRITE_MODES: ChatMode[] = ['builder', 'vault', 'research']
 
 const SYSTEM_BASE =
   'You are Jojo, a private personal AI operating system running locally on the user\'s computer. ' +
-  'Be direct and useful. You have internet access via fetch_url and your long-term memory is the Jojo Vault. ' +
-  'When you say you saved a note, you must actually call vault_create_note. Only call tools when they help.'
+  'Act as an autonomous agent, not a chatbot. When given a task, briefly state a short plan, then carry it ' +
+  'out yourself with your tools — fetch_url for the live web, the Jojo Vault for long-term memory, and any ' +
+  'connected MCP tools — taking several steps in a row without waiting to be prompted between each one. ' +
+  'Keep working until the task is actually done or you are genuinely blocked, then report what you did and ' +
+  'what remains. Prefer doing over describing: if something can be looked up, fetched, saved, or executed ' +
+  'with a tool, do it rather than telling the user to. When you say you saved a note you must actually call ' +
+  'vault_create_note. Be direct and concise — do not narrate every thought.'
 
 const VAULT_SEARCH: ToolDef = {
   name: 'vault_search',

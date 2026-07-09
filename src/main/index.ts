@@ -300,19 +300,45 @@ app.whenReady().then(() => {
   // whatever the user runs locally (faster-whisper-server, whisper.cpp, etc.).
   ipcMain.handle('stt:transcribe', async (_e, base64: string, mime: string) => {
     const { sttEndpoint, sttModel } = load().settings
-    if (!sttEndpoint) throw new Error('No STT endpoint set. Add one in Voice settings.')
     const buf = Buffer.from(base64, 'base64')
     const form = new FormData()
     form.append('file', new Blob([buf], { type: mime || 'audio/webm' }), 'audio.webm')
-    form.append('model', sttModel || 'whisper-1')
-    const res = await fetch(sttEndpoint, {
+
+    // 1) An explicit local Whisper endpoint (faster-whisper-server, etc.) wins.
+    if (sttEndpoint) {
+      form.append('model', sttModel || 'whisper-1')
+      const res = await fetch(sttEndpoint, {
+        method: 'POST',
+        body: form,
+        signal: AbortSignal.timeout(60_000)
+      })
+      if (!res.ok) throw new Error(`STT ${res.status}: ${(await res.text()).slice(0, 200)}`)
+      return ((await res.json()) as { text?: string }).text ?? ''
+    }
+
+    // 2) Otherwise use a saved OpenAI-compatible provider that offers Whisper.
+    // Prefer Groq (fast, free tier) then OpenAI, else the first keyed provider.
+    const keyed = vault.listProviders().filter((p) => p.hasKey)
+    const pick =
+      keyed.find((p) => /groq\.com/.test(p.baseUrl)) ??
+      keyed.find((p) => /openai\.com/.test(p.baseUrl)) ??
+      keyed[0]
+    if (!pick)
+      throw new Error(
+        'Voice needs a speech model. Add an OpenAI- or Groq-compatible API key in API Keys, or set a local Whisper endpoint in Voice settings.'
+      )
+    const key = vault.getApiKey(pick.id)
+    const model = sttModel || (/groq\.com/.test(pick.baseUrl) ? 'whisper-large-v3' : 'whisper-1')
+    form.append('model', model)
+    const res = await fetch(`${pick.baseUrl}/audio/transcriptions`, {
       method: 'POST',
+      headers: key ? { Authorization: `Bearer ${key}` } : {},
       body: form,
       signal: AbortSignal.timeout(60_000)
     })
-    if (!res.ok) throw new Error(`STT ${res.status}: ${(await res.text()).slice(0, 200)}`)
-    const body = (await res.json()) as { text?: string }
-    return body.text ?? ''
+    if (!res.ok)
+      throw new Error(`STT via ${pick.name} ${res.status}: ${(await res.text()).slice(0, 160)}`)
+    return ((await res.json()) as { text?: string }).text ?? ''
   })
 
   // ---- real data wipe (privacy) — actually deletes from disk, returns summary ----

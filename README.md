@@ -37,7 +37,7 @@ Latest: **v0.1.1** · grab the installer for your platform from the [**Releases 
 | **macOS** | [Apple Silicon](https://github.com/Arvaankohli711/Jojo-os-/releases/download/v0.1.1/jojo-os-0.1.1-arm64.dmg) · [Intel](https://github.com/Arvaankohli711/Jojo-os-/releases/download/v0.1.1/jojo-os-0.1.1-x64.dmg) |
 | **Linux** | [AppImage](https://github.com/Arvaankohli711/Jojo-os-/releases/download/v0.1.1/jojo-os-0.1.1-x86_64.AppImage) · [.deb](https://github.com/Arvaankohli711/Jojo-os-/releases/download/v0.1.1/jojo-os_0.1.1_amd64.deb) |
 
-> Installers are unsigned — Windows: **More info → Run anyway**; macOS: right-click → **Open**.
+> Installers are unsigned. **Windows:** More info → Run anyway. **macOS:** if it reports “damaged / can’t be opened” (Gatekeeper quarantine), run `xattr -dr com.apple.quarantine "/Applications/Jojo OS.app"` then launch it.
 
 Or build from source:
 
