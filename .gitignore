@@ -12,6 +12,7 @@ build/*
 !build/icon.ico
 !build/icon.icns
 !build/entitlements.mac.plist
+!build/afterSign.js
 
 # Jojo OS — never commit private user data or secrets
 JojoUserData/

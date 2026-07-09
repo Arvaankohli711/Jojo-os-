@@ -11,6 +11,8 @@ files:
   - '!{tsconfig.json,tsconfig.node.json,tsconfig.web.json}'
 asarUnpack:
   - resources/**
+# Ad-hoc sign the macOS app so Gatekeeper doesn't reject it as "damaged".
+afterSign: build/afterSign.js
 win:
   executableName: jojo-os
   icon: build/icon.png

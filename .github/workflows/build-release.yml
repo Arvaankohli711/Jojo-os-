@@ -34,6 +34,12 @@ jobs:
             build: npx electron-builder --linux AppImage deb --x64 --publish never
             artifacts: dist/*.AppImage dist/*.deb
     runs-on: ${{ matrix.os }}
+    # Use bash on every OS (incl. Windows) so $TAG and dist/*.exe globbing in the
+    # upload step behave the same everywhere. Without this Windows uses PowerShell
+    # and the upload fails with "release not found".
+    defaults:
+      run:
+        shell: bash
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
